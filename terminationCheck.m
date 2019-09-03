@@ -85,7 +85,15 @@ function [StoppingCriteria, stoppingCondition] = accuracyTerminationCheck(stoppi
                 stoppingCondition = 'Accuracy based';
             end
         end
-
+    else
+        ulBestKnownFunctionValue = 0.0;
+        llBestKnownFunctionValue = 0.0;
+        if abs(ulBestKnownFunctionValue-eliteFunctionValue) < desiredAccuracy 
+            if abs(llBestKnownFunctionValue-llEliteFunctionValue) < desiredAccuracy
+                StoppingCriteria = 1;
+                stoppingCondition = 'Accuracy based';
+            end
+        end
     end
    
 function [StoppingCriteria, stoppingCondition] = varianceTerminationCheck(gen, tag, ulPop, llPop, ulDim, llDim, stoppingParameters)

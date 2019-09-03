@@ -5,11 +5,21 @@ function [functionValue equalityConstrVals inequalityConstrVals] = ulExternalPro
     x = xu;
     y = xl;
 
-    functionValue =   60*x(1) + 80*x(2) + 70*x(3) - 2*x(1)^2 - 3*x(2)^2 - 2*x(3)^2 - x(1)*y(1) - 2*x(2)*y(3);
-    functionValue = functionValue + 50*x(4) + 40*x(5) - 2*x(4)^2 - 2*x(5)^2 - x(4)*y(4);
+    d = length(x) / 2;
 
+    % ff = 1e6*(y(1) - 1).^2 +  sum( (y(2:d) - 1) .^ 2 );
+    ff = 10*d + sum(y(1:d).^ 2 - 10*cos( 2*pi*y(1:d) )) ;
+
+    p1 = ff - sum(  (sin(  0.1*x(1:d)  )).^2 );
+    p2 = sum((   x(d+1:end) - y(d+1:end)   ).^2) + sum(  x(d+1:end).^2  );
+    
+    functionValue = abs(p1) + p2;
+
+    functionValue = -functionValue;
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %Write the constraints here
+    inequalityConstrVals = [];
     equalityConstrVals = [];
-    inequalityConstrVals(1) = x(1) + x(2) - 22;
-    inequalityConstrVals(2) = x(2) + x(3) - 25;
-    inequalityConstrVals(3) = x(4) + x(5) - 20;
-
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
