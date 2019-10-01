@@ -4,11 +4,11 @@ problemName = 'externalProblem';             % Test problem name
 
 ulPopSize=100;                    % Size of UL population
 ulMaxGens=1000;                  % Maximum number of generations allowed at UL
-ulDim= 5;                         % Number of UL dimensions
+ulDim= 3;                         % Number of UL dimensions
 
 llPopSize=100;                    % Size of LL population
 llMaxGens=1000;                  % Maximum number of generations allowed at LL
-llDim= 5;                         % Number of LL dimensions
+llDim= 3;                         % Number of LL dimensions
 
 ulDimMin = -10*ones(1, ulDim);            % Minimum value accross UL dimensions
 ulDimMax = 10*ones(1, llDim);              % Maximum value accross UL dimensions
