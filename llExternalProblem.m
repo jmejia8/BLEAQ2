@@ -5,13 +5,12 @@ function [functionValue equalityConstrVals inequalityConstrVals] = llExternalPro
     x = xu;
     y = xl;
 
-    d = ceil(length(x) / 2);
+    d = floor(length(x) / 2);
 
+    q1 = sum(y(1:d).^2) + sum(0.5*y(1:d)).^2 + sum(0.5*y(1:d)).^4;
+    r1 = -x(1)^2 - 1e6*sum(x(2:d).^2);
 
-    q1 = 10 + y(1) + 1e6*sum( y(2:d).^2 );
-    r1 = -sum(x(1:d).^2);
-
-    q2 = sum( (y(d+1:end) - 0.01*x(d+1:end).^3 ).^2 );
+    q2 = (y(d+1) - x(d+1) .* sin(x(d+1)) )^2 + 1e6*sum( (y(d+2:end) - x(d+2:end) .* sin(x(d+2:end))).^2 );
     r2 = -sum( x(d+1:end).^2 );
 
     p1 = q1 + r1;
