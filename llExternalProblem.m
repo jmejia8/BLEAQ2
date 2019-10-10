@@ -7,10 +7,12 @@ function [functionValue equalityConstrVals inequalityConstrVals] = llExternalPro
 
     d = floor(length(x) / 2);
 
-    q1 = sum(y(1:d).^2) + sum(0.5*y(1:d)).^2 + sum(0.5*y(1:d)).^4;
-    r1 = -x(1)^2 - 1e6*sum(x(2:d).^2);
+    q1 = sum(100*(y(1:d-1).^2  -  y(2:d) ).^2 + ( y(1:d-1) - 1 ) ) ;
+    r1 = -sum(x(1:d).^2);
 
-    q2 = (y(d+1) - x(d+1) .* sin(x(d+1)) )^2 + 1e6*sum( (y(d+2:end) - x(d+2:end) .* sin(x(d+2:end))).^2 );
+    n = length(x((d+1):end));
+    q2 = sum( ( y(d+1:end)  - 0.01*x(d+1:end).^3 ).^2 ) ;
+    % q2 = sum( abs( y((d+1):end) - 10.0 ./ (1 + 2.5*(x((d+1):end).^2)) ) .^(2:(n+1)) );
     r2 = -sum( x(d+1:end).^2 );
 
     p1 = q1 + r1;
