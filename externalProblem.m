@@ -1,4 +1,6 @@
-function externalProblem()
+function externalProblem(fnum_, nrun)
+global fnum;
+fnum = fnum_;
 
 problemName = 'externalProblem';             % Test problem name
 
@@ -19,14 +21,11 @@ llDimMax = ulDimMax;     % Maximum value accross LL dimensions
 ulStoppingCriteria = 1e-2;
 llStoppingCriteria = 1e-3;
 
-[ulEliteFunctionValue, llEliteFunctionValue, ulEliteIndiv, llEliteIndiv, ulFunctionEvaluations, llFunctionEvaluations]=ulSearch(problemName, ulPopSize, ulMaxGens, ulDim, ulDimMin, ulDimMax, llPopSize, llMaxGens, llDim, llDimMin, llDimMax, ulStoppingCriteria, llStoppingCriteria)
 
-save('externalProblem');
+[ulEliteFunctionValue, llEliteFunctionValue, ulEliteIndiv, llEliteIndiv, ulFunctionEvaluations, llFunctionEvaluations]=ulSearch(problemName, ulPopSize, ulMaxGens, ulDim, ulDimMin, ulDimMax, llPopSize, llMaxGens, llDim, llDimMin, llDimMax, ulStoppingCriteria, llStoppingCriteria);
 
+y = PMM_Psi(ulEliteIndiv, length(ulEliteIndiv), fnum)
+norm(llEliteIndiv - y)
 
-%Solution
+save(strcat('externalProblem_PMM', int2str(fnum), 'run', int2str(nrun)));
 
-%ulEliteFunctionValue =   1684.0966
-%llEliteFunctionValue =  490.7658
-%ulEliteIndiv =   12.0163    9.3334   15.6666   10.6250    9.3750
-%llEliteIndiv =    8.8683    6.1317    9.8683    5.0000    2.6562
