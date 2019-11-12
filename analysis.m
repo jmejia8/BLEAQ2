@@ -8,7 +8,7 @@ for fnum = 1:6
 
 
     for nrun = 1:31
-        fname  = sprintf('data/externalProblem_PMM%drun%d.mat',  fnum, nrun);
+        fname  = sprintf('data_5_5/externalProblem_PMM%drun%dDUL5DLL5.mat',  fnum, nrun);
         therun = load(fname);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,7 +20,7 @@ for fnum = 1:6
         f = therun.llEliteFunctionValue;
         x = therun.ulEliteIndiv;
         y = therun.llEliteIndiv;
-        psi = PMM_Psi(x, 3, 1);
+        psi = PMM_Psi(x, 5, 1);
         
         nx = norm(x);
         ny = norm(y - psi);
@@ -39,6 +39,6 @@ for fnum = 1:6
     disp('==============================================================');
     disp('==============================================================');
     disp('==============================================================');
-    disp(mean(ul_evals))
-    disp(mean(ll_evals))
+    % disp(mean(ul_evals))
+    % disp(mean(ll_evals))
 end
