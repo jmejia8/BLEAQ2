@@ -1,10 +1,10 @@
-function runExperiment()
+function runExperiments()
 
-D_ul = 2;
-D_ll = 3;
+D_ul = 5;
+D_ll = 5;
 
-parfor fn = 1:6
-    for nrun = 1:31
+for fn = 1:6
+    parfor nrun = 1:31
         externalProblem(fn, nrun, D_ul, D_ll);
     end
 end

@@ -28,5 +28,5 @@ tic;
 timeElapsed = toc;
 
 
-save(strcat('externalProblem_PMM', int2str(fnum), 'run', int2str(nrun)));
+save(strcat('externalProblem_PMM', int2str(fnum), 'run', int2str(nrun), 'DUL', int2str(ulDim), 'DLL', int2str(llDim)) );
 
