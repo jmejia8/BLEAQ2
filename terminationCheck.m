@@ -88,8 +88,8 @@ function [StoppingCriteria, stoppingCondition] = accuracyTerminationCheck(stoppi
     else
         ulBestKnownFunctionValue = 0.0;
         llBestKnownFunctionValue = 0.0;
-        if abs(ulBestKnownFunctionValue-eliteFunctionValue) < desiredAccuracy 
-            if abs(llBestKnownFunctionValue-llEliteFunctionValue) < desiredAccuracy
+        if abs(ulBestKnownFunctionValue-eliteFunctionValue) < 1e-2 
+            if abs(llBestKnownFunctionValue-llEliteFunctionValue) < 1e-3
                 StoppingCriteria = 1;
                 stoppingCondition = 'Accuracy based';
             end
