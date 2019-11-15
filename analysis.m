@@ -1,6 +1,6 @@
 function analysis()
-D_ul = 2;
-D_ll = 3;
+D_ul = 5;
+D_ll = 5;
 
 ul_evals = zeros(31, 6);
 ll_evals = zeros(31, 6);
