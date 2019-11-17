@@ -1,6 +1,6 @@
 function analysis()
-D_ul = 5;
-D_ll = 5;
+D_ul = 2;
+D_ll = 3;
 
 ul_evals = zeros(31, 6);
 ll_evals = zeros(31, 6);
@@ -24,14 +24,14 @@ for fnum = 1:6
         ll_evals(nrun, fnum) = therun.llFunctionEvaluations;
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         ul_accur(nrun, fnum) = abs(therun.ulEliteFunctionValue);
-        ll_accur(nrun, fnum) = abs(therun.ulEliteFunctionValue);
+        ll_accur(nrun, fnum) = abs(therun.llEliteFunctionValue);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         F = therun.ulEliteFunctionValue;
         f = therun.llEliteFunctionValue;
         x = therun.ulEliteIndiv;
         y = therun.llEliteIndiv;
-        psi = PMM_Psi(x, D_ll, 1);
+        psi = PMM_Psi(x, D_ll, fnum);
         
         nx = norm(x);
         ny = norm(y - psi);
@@ -48,8 +48,8 @@ for fnum = 1:6
     ps = round(100*i / 31);
     nc = round( 100*j / 31);
     success = 100 - ps - nc;
-    % s = sprintf('  pseudos = %d\t no-converged = %d \t success = %d', ps, nc, success);
-    % disp(s);
+    s = sprintf('  pseudos = %d\t no-converged = %d \t success = %d', ps, nc, success);
+    disp(s);
     % disp('==============================================================');
     % disp('==============================================================');
     % disp('==============================================================');
